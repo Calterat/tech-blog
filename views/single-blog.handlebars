@@ -1,0 +1,39 @@
+<ol class="list-group">
+  <li class="list-group-item list-group-item-action" aria-current="true">
+    <div class="card">
+      <h4 class="card-header">{{blog.title}}</h4>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>{{blog.body}}</p>
+          <footer class="blockquote-footer">{{blog.user.username}} <cite title="Source Title">  on  {{blog.created_at}}</cite></footer>
+        </blockquote>
+      </div>
+    </div> 
+  </li>
+</ol>
+{{#if loggedIn}}
+<ol class="list-group">
+  {{#each blog.comments as |comment|}}
+  <li class="list-group-item list-group-item-action" aria-current="true">
+    <div class="card">
+      <h6 class="card-header">Comment ID: {{id}}</h6>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>{{comment_body}}</p>
+          <footer class="blockquote-footer">{{user.username}} <cite title="Source Title">  on  {{created_at}}</cite></footer>
+        </blockquote>
+      </div>
+    </div> 
+  </li>
+  {{/each}}
+</ol>
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+  <div>
+    <button type='submit' class="btn btn-success">Add Comment!</button>
+  </div>
+</form>
+<script src="/javascript/comment.js"></script>
+{{/if}}

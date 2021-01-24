@@ -22,13 +22,15 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  Blog.create({
-    title: req.body.title,
-    body: req.body.body,
-    user_id: req.body.user_id
-  })
-    .then(blogData => res.json(blogData))
-    .catch(err => res.status(500).json(err));
+  if (req.session) {
+    Blog.create({
+      title: req.body.title,
+      body: req.body.body,
+      user_id: req.session.user_id
+    })
+      .then(blogData => res.json(blogData))
+      .catch(err => res.status(500).json(err));
+  }
 });
 
 router.put('/:id', (req, res) => {

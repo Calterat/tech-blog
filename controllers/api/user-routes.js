@@ -44,7 +44,7 @@ router.post('/login', (req, res) => {
   })
     .then(data => {
       if (!data) {
-        res.status(400).json({ message: 'No user with that email address!' });
+        res.status(404).json({ messasge: 'No user with that email address!' });
         return;
       }
 
