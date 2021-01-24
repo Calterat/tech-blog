@@ -1,1 +1,17 @@
-<h1>HELLO!</h1>
+<ol class="list-group">
+  {{#each blogs as |blog|}}
+  <li class="list-group-item list-group-item-action" aria-current="true">
+    <a class="text-decoration-none text-reset" href="/blogs/{{id}}">
+      <div class="card">
+        <h4 class="card-header">{{title}}</h4>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>{{body}}</p>
+            <footer class="blockquote-footer">{{user.username}} <cite title="Source Title">  on  {{created_at}}</cite></footer>
+          </blockquote>
+        </div>
+      </div> 
+    </a>
+  </li>
+  {{/each}}
+</ol>
