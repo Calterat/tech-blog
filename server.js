@@ -11,5 +11,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Server booting up to lend an ear'));
+  app.listen(PORT, () => console.log(`\nServer booting up, and lending an ear on port ${PORT}\n`));
 });
