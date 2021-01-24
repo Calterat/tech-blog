@@ -27,9 +27,44 @@ router.post('/', (req, res) => {
     email: req.body.email,
     password: req.body.password
   })
-    .then(userData => res.json(userData))
+    .then(userData => {
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.username = userData.username;
+        req.session.loggedIn = true;
+        res.json(userData);
+      })
+    })
     .catch(err => res.status(500).json(err));
 });
+
+router.post('/login', (req, res) => {
+  User.findOne({
+    where: { email: req.body.email }
+  })
+    .then(data => {
+      if (!data) {
+        res.status(400).json({ message: 'No user with that email address!' });
+        return;
+      }
+
+      const validPassword = data.checkPassword(req.body.password);
+
+      if (!validPassword) {
+        res.status(400).json({ message: 'Incorrect Password' });
+        return;
+      }
+
+      req.session.save(() => {
+        req.session.user_id = data.id;
+        req.session.username = data.username;
+        req.session.loggedIn = true;
+
+        res.json({ user: data, message: 'You are now logged in!' });
+      })
+    })
+  .catch(err => res.status(500).json(err));
+})
 
 router.put('/:id', (req, res) => {
   User.update(req.body, {
@@ -58,5 +93,15 @@ router.delete('/:id', (req, res) => {
     })
     .catch(err => res.status(500).json(err));
 });
+
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  }
+  else res.status(400).end();
+});
+
 
 module.exports = router;
