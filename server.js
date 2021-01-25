@@ -10,6 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
   secret: 'Super secret password',
   cookie: {},
+  expires: new Date(Date.now() + (1000 * 60 * 15)),
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({

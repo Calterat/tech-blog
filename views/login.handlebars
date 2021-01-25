@@ -1,17 +1,19 @@
-<h1>Sign In!</h1>
-<form class="login-form">
-  <div>
-    <label for="email-login">email:</label>
-    <input type="text" id="email-login"/>
+<h1 class="text-center">Sign In!</h1>
+<form class="login-form container">
+  <div class="row justify-content-center m-2">
+    <label class="col-2 text-end" for="email-login">email:</label>
+    <input class="col-3" type="text" id="email-login"/>
+    <div class="col-2"></div>
   </div>
-  <div>
-    <label for="password-login">password:</label>
-    <input type="password" id="password-login"/>
+  <div class="row justify-content-center m-2">
+    <label class="col-2 text-end" for="password-login">password:</label>
+    <input class="col-3" type="password" id="password-login"/>
+    <div class="col-2"></div>
   </div>
-  <div>
-    <button type="submit" class="btn btn-success">login</button>
+  <div class="row justify-content-center m-2">
+    <button type="submit" class="col-2 btn btn-success">login</button>
   </div>
 </form>
-<p>No Login? Sign up with the link below!</p>
-<p><a href="./signup">SIGN UP!</a></p>
+<p class="text-center m-2">No Login? Sign up with the link below!</p>
+<p class="text-center m-2"><a href="./signup">SIGN UP!</a></p>
 <script src="/javascript/login.js"></script>
