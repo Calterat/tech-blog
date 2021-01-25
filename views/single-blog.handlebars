@@ -1,3 +1,14 @@
+{{#if loggedIn}}
+<form class="comment-form m-2">
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-between">
+      <textarea class="col-9 mx-1" rows='2' name="comment-body" placeholder="Add a comment"></textarea>
+      <button class="col-2 mx-1 btn btn-success" type='submit'>Add Comment!</button>
+    </div>
+  </div>
+</form>
+{{/if}}
+
 <ol class="list-group">
   <li class="list-group-item list-group-item-action" aria-current="true">
     <div class="card">
@@ -12,7 +23,7 @@
   </li>
 </ol>
 {{#if loggedIn}}
-<ol class="list-group">
+<ol>
   {{#each blog.comments as |comment|}}
   <li class="list-group-item list-group-item-action" aria-current="true">
     <div class="card">
@@ -27,13 +38,5 @@
   </li>
   {{/each}}
 </ol>
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
-  <div>
-    <button type='submit' class="btn btn-success">Add Comment!</button>
-  </div>
-</form>
 <script src="/javascript/comment.js"></script>
 {{/if}}
